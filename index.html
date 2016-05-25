@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>DSMobile</title>	
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>	
+</head>
+<body ng-app="app" ng-controller="appCtrl">
+
+	<div class="header">
+		<button class="login-button" ng-click="promptLogin=true" ng-hide="auth">Login</button>
+		<div class="result" ng-show="auth">
+			<span>Logged in as <b>{{username}}</b></span>
+			<button class="grey-orange-button" ng-click="logout()">Logout</button>
+		</div>
+	</div>
+
+	<div class="prompt-login" ng-show="promptLogin">
+		<button class="sign-in-button" ng-click="googleLogin()">
+			<img src="images/sign-in-google.png" alt="Sign in with Google" />
+		</button>
+		<button class="sign-in-button" ng-click="facebookLogin()">
+			<img src="images/sign-in-facebook.png" alt="Sign in with Google" />
+		</button>
+		<button class="sign-in-button" ng-click="twitterLogin()">
+			<img src="images/sign-in-twitter.png" alt="Sign in with Google" />
+		</button>
+		<button class="cancel-button grey-orange-button" ng-click="promptLogin=false">Cancel</button>
+	</div>
+
+	<div class="banner">
+		<h1>DSMobile</h1>
+	</div>
+
+	<script type="text/javascript" src="js/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+body {
+	font-family: Verdana;
+	margin: 0;
+}
+
+.center-screen {
+	position: absolute;
+	top: 50%;
+	left: 50%;	
+	text-align: center;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+	padding: 10px 15px;
+	border-radius: 5px;
+}
+
+button:focus {
+	outline: none;
+}
+
+.grey-orange-button {
+	background-color: grey;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.grey-orange-button:hover {
+	background-color: #e64a19;
+}
+
+.header {
+	background-color: black;
+	padding: 5px 7px 5px 5px;
+	height: 35px;
+}
+
+.login-button {
+	float:right;
+	background-color: #23528e;
+}
+
+.login-button:hover {
+	background-color: #193c68;
+}
+
+.sign-in-button {
+	margin: 5px 5px auto;	
+	padding: 0;
+	background:transparent;	
+	width: 162px;
+	height: 29px;
+	
+}
+
+.prompt-login {
+	position: absolute;
+	right: 0px;
+	width: 170px;
+	background-color: white;
+	padding: 10px 10px 20px 15px;
+	text-align: center;
+	border-radius:0 0 0 15px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cancel-button {
+	margin: 5px 0px auto;
+}
+
+
+.result {
+	float: right;
+}
+
+.result span {
+	font-size: 15px;
+	color: white;
+}
+
+.banner {
+	background-color: #2e6ebf;
+	padding: 30px 20px 30px 40px;
+}
+
+.banner h1 {
+	color: white;
+	margin: 0;
+	font-size: 40px;
+}
