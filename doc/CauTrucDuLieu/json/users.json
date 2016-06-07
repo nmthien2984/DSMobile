@@ -1,0 +1,22 @@
+{ 
+	"1312094" : 
+	{
+		"username" : "MinhDung1995",
+		"email" : "minhdungnguyen1995@gmail.com",
+		"fullname" : "Nguyễn Minh Dũng",
+		"gender" : "male",
+		"birthday" : 819676800,
+		"password" : "neo2312",
+		
+		"bankaccount" : [ "23121995NEODS" ],
+		"creditcard" : [ 23121995 ],
+		"phone" : [ "0967872636" ],
+		
+		"markProductIDs" : [ "23121995" ],
+			
+		"reviewProductIDs" : 
+		[ 
+			23121995
+		]
+	}
+}

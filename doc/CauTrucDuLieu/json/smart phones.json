@@ -1,0 +1,44 @@
+{
+	"Menu" : ["Smartphone", "Tablet", "Accessories"],
+	
+	"Smartphone" : 
+	[
+		"AA001",
+		"AA002",
+		"AA003",
+		"AA004",
+		"AA005",
+		"AA006",
+		"AA007",
+		"AA008",
+		"AA009",
+		"AA010",
+		"AA011",
+		"AA012"
+	],
+	
+	"Tablet" :
+	[
+		"AA013",
+		"AA014",
+		"AA015",
+		"AA016",
+		"AA017",
+		"AA018",
+		"AA019",
+		"AA020",
+		"AA021",
+		"AA022"
+	],
+	
+	"Accessories" : 
+	[
+		"AA023",
+		"AA024",
+		"AA025",
+		"AA026",
+		"AA027",
+		"AA028",
+		"AA029"
+	]
+}
