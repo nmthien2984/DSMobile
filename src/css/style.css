@@ -1419,3 +1419,22 @@ body {
 .remove_button:hover {
 	color:white;
 }
+
+.review_item {
+	background-color: #ebebeb;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+}
+.review_title {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.review_user {
+	color: #e44f2b;
+}
+
+.review_content {
+	color: black !important;
+	font-size: 13px;
+}

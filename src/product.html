@@ -197,35 +197,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										</ul>
 									</div>
 									<div class="review">
-										<h4>Lorem ipsum Review by <a href="#">Finibus Bonorum</a></h4>
-										<ul>
-											<li>Rating: <div class="rating-stars"><div class="rating" data-rating-max="5"> </div> </div>
-											</li>
-										</ul>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+										<div class = "review_item" ng-repeat="review in reviews">
+											<h4><span class ="review_title">{{review.title}}</span> - <span class="review_user">{{review.$id}}</span></h4>
+											<p class="review_content">{{review.content}}</p>
+										</div>
 										<div class="your-review">
-											<h4>How Do You Rate This Product?</h4>
-											<p>Write Your Own Review?</p>
+											<h4>Write Your Own Review?</h4>
 											<form>
 												<div>
 													<span><label>Summary of Your Review<span class="red">*</span></label></span>
-													<span><input type="text" value=""></span>
+													<span><input type="text" ng-model="title"></span>
 												</div>						
 												<div>
 													<span><label>Review<span class="red">*</span></label></span>
-													<span><textarea> </textarea></span>
+													<span><textarea ng-model="content"> </textarea></span>
 												</div>
 												<div>
-													<span><input type="submit" value="SUBMIT REVIEW"></span>
+													<span><input type="submit" value="SUBMIT REVIEW" ng-click="submitReview()"></span>
+													<span class="red">{{error}}</span>
 												</div>
 											</form>
 										</div>			
-										<script type="text/javascript">
-										/* place inside document ready function */
-										$(".rating").starRating({
-										minus: true // step minus button
-										});
-										</script>	
 									</div>
 								</div>
 							</div>

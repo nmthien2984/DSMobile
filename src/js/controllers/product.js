@@ -13,6 +13,18 @@
     if ($scope.phone != null)
       Lockr.set("reqBrand", $scope.phone.maker.name);
 
+    console.log($scope.phone);
+
+    $scope.reviews = $firebaseArray(ref.child("reviews/" + $scope.phone.$id));
+    $scope.reviews.$loaded()
+      .then(function() {
+        console.log($scope.reviews);  
+      })
+      .catch(function(err) {
+      console.error(err);
+      });
+
+
     $scope.loadPhones = function(brand) {
       Lockr.set("phone", null);
       Lockr.set("reqBrand", brand);
@@ -41,6 +53,40 @@
       Lockr.set("search", $scope.search);
       Lockr.set("reqBrand", "Search result");
       $window.location.href = "/";
+    }
+
+    $scope.title = "";
+    $scope.error = "";
+    $scope.content = "";
+    $scope.submitReview = function() {
+      var i;
+      for (i = 0; i < $scope.reviews.length; i++) {
+        if ($scope.user == $scope.reviews[i].$id) {
+          $scope.error = "You already reviewed this product";
+          return;
+        }
+      }  
+
+      if ($scope.title == "" || $scope.content == "") {
+        $scope.error = "Can not leave either title or content blank";
+        return;
+      }
+
+      var reviewItem = {"title" : $scope.title, "content" : $scope.content};
+
+      var onComplete = function(error) {
+        if (error) {
+          console.log('Synchronization failed');
+        } else {
+          reviewItem.$id = $scope.user;
+          $scope.reviews.push(reviewItem);
+          $scope.title = "";
+          $scope.content = "";
+          console.log('Synchronization succeeded');
+        }
+      };
+      
+      ref.child("reviews/"+ $scope.phone.$id + "/" + $scope.user).set(reviewItem, onComplete);
     }
 
   }]);
