@@ -53,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script type="text/javascript" src="js/lockr.min.js"></script>
 </head>
 <body ng-app="app">
-	<div ng-controller="productCtrl">
+	<div ng-controller="cartCtrl">
 		<div class="header">
 			<div class="wrap">
 				<div class="header_top">
@@ -64,8 +64,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="search_box">
 					  	<span>Search</span>
 			     		<form>
-			     			<input type="text" value="">
-			     			<input type="submit" value="">
+			     			<input type="text" ng-model="search">
+			     			<input type="submit" ng-click="searchPhones()">
 			     		</form>
 			     		<div class="clear"></div>
 			     	</div>

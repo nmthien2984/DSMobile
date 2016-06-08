@@ -39,8 +39,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="search_box">
 					  	<span>Search</span>
 			     		<form>
-			     			<input type="text" value="">
-			     			<input type="submit" value="">
+			     			<input type="text" ng-model="search" ng-required>
+			     			<input type="submit" ng-click="searchPhones()">
 			     		</form>
 			     		<div class="clear"></div>
 			     	</div>
@@ -155,7 +155,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 
 					<div class="content-bottom-right">
-						<h3>{{phones[0].maker.name}}</h3>
+						<h3>{{currentBrand}}</h3>
 						<div class="section group">
 							<div class="grid_1_of_4 images_1_of_4" ng-repeat="phone in phones">
 								<h4><a href="product.html">{{phone.name.id}} {{phone.memory.rom}}</a></h4>

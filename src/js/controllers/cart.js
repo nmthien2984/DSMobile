@@ -1,11 +1,12 @@
 (function() {
 
   angular.module('app.controllers', ["firebase"])
-  .controller("productCtrl", ["$scope", "$firebaseArray", "$firebaseObject", "$window", 
+  .controller("cartCtrl", ["$scope", "$firebaseArray", "$firebaseObject", "$window", 
   function($scope, $firebaseArray, $firebaseObject, $window){
 
     var ref = new Firebase("https://mobileds.firebaseio.com/");
     
+    $scope.search = "";
     $scope.user = "1312551"; //fix later
     $scope.total = 0;
     
@@ -50,6 +51,20 @@
 
       ref.child("carts/" + $scope.user + "/" + phone.$id).remove(onComplete);
     };
+
+
+    $scope.loadPhones = function(brand) {
+      Lockr.set("reqBrand", brand);
+      $window.location.href = "/";
+    };
+
+    $scope.searchPhones = function() {
+      if ($scope.search == "")
+        return;
+      Lockr.set("search", $scope.search);
+      Lockr.set("reqBrand", "Search result");
+      $window.location.href = "/";
+    }
 
   }]);
 })();
