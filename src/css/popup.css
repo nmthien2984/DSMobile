@@ -74,3 +74,8 @@
 	height: 20px;
 	width : 20px;
 }
+
+.login_error
+{
+	color : red;
+}

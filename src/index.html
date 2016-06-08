@@ -56,12 +56,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								
 								<div>
 									<p class = "login-tilte"> Email </p>
-									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "aglEmail"/>
+									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "popupCtrl.aglEmail"/>
 									<p class = "login-title"> Password </p>
-									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "aglPass"/>
+									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "popupCtrl.aglPass"/>
+									<p class = "login_error"> {{aglError}} </p>
 									<p> Forgot password? Click <a href = "#"> here </a> </p>
 									<p> Haven't account yet? <a href = "#" ng-click="flag1 = !flag1"> Sign up </a> </p>
-									<center> <button ng-click = "login()"> Login </button> </center>
+									
+									<center> <button ng-click = "popupCtrl.SignIn()"> Login </button> </center>
 								</div>
 							</div>
 							
@@ -72,12 +74,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								
 								<div>
 									<p class = "login-tilte"> Email </p>
-									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "aglSUEmail"/>
+									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "popupCtrl.aglSUEmail"/>
 									<p class = "login-title"> Password </p>
-									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "aglSUPass"/>
+									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "popupCtrl.aglSUPass"/>
 									
-									<input type = "checkbox"> I agree to the Terms of Service and Privacy Policy
-									<center> <button ng-click = "signup()"> Sign up </button> </center>
+									<input type = "checkbox" ng-model="popupCtrl.aglAgree"/> I agree to the Terms of Service and Privacy Policy
+									
+									<p class = "login_error"> {{aglError}} </p>
+									<center> <button ng-click = "popupCtrl.SignUp()"> Sign up </button> </center>
 								</div>
 							</div>
 
@@ -243,7 +247,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script type="text/javascript" src="js/controllers/main.js"></script>
 	<script type="text/javascript" src="js/controllers/index.js"></script>
 	<script type="text/javascript" src="js/controllers/popup.js"></script>
-
+	
+	
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

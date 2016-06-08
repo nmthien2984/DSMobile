@@ -1,8 +1,13 @@
 (function() {
-	angular.module('app.controllers').controller('PopupCtrl', PopupCtrl)
-
-	function PopupCtrl()
+	var app = angular.module('app.controllers').controller('PopupCtrl', ["$scope", "$firebaseAuth", "$window",
+	
+	
+	function ($scope, $firebaseAuth, $window)
 	{
+		var ref = new Firebase("https://mobileds.firebaseio.com");
+		this.auth = $firebaseAuth(ref);
+		//alert(this.auth);	
+		
 		this.toggle = function(div_id) {
 			var el = document.getElementById(div_id);
 			if ( el.style.display == 'none' ) 
@@ -63,6 +68,86 @@
 			this.toggle('blanket');
 			this.toggle(windowname);		
 		}	
-	}
 
+		$scope.getError = function(error)
+		{
+			$scope.aglError = null;
+
+			if (error.code == "INVALID_USER")
+				$scope.aglError = "Wrong username!";
+			else if (error.code == "INVALID_PASSWORD")
+				$scope.aglError = "Wrong password!";
+			else if (error.code == "INVALID_EMAIL")
+				$scope.aglError = "Invalid email!";
+			else if (error.code == "EMAIL_TAKEN")
+				$scope.aglError = "Email's used!";
+		}
+		//$scope.getError("");
+		//this.aglError = null;
+		this.aglEmail = null;
+		this.aglPass = null;
+		
+		this.SignUp = function()
+		{		
+			$scope.aglError = null;
+
+			if (this.aglSUEmail == null || this.aglSUEmail == "")
+				$scope.aglError = "Empty Username!";
+			else if (this.aglSUPass == null || this.aglSUPass == "")
+				$scope.aglError = "Empty Password!";
+			else if (this.aglAgree != true)
+				$scope.aglError = "Must agree!";
+			
+			if ($scope.aglError != null)
+				return;
+						
+			this.auth.$createUser({
+				email    : this.aglSUEmail,
+				password : this.aglSUPass
+			}).then(function(userData) {
+				alert("Success");
+
+				this.auth.$authWithPassword({
+				email    : this.aglSUEmail,
+				password : this.aglSUPass
+				}).then(function(authData) {
+					this.aglSUEmail = null;
+					this.aglSUPass = null;
+					this.aglFlag = true;
+					//window.location.href = "index.html";
+				}).catch(function(error) {
+					$scope.getError(error);
+				});
+				
+			}).catch(function(error) {
+				$scope.getError(error);
+			});
+		}
+	  
+		this.SignIn = function()
+		{
+			$scope.aglError = null;
+			if (this.aglEmail == null || this.aglEmail == "")
+				$scope.aglError = "Empty Username!"
+			else if (this.aglPass == null || this.aglPass == "")
+				$scope.aglError = "Empty Password!"
+			
+			if ($scope.aglError != null)
+				return;
+			
+			this.auth.$authWithPassword({
+				email    : this.aglEmail,
+				password : this.aglPass
+			}).then(function(authData) {
+				this.aglEmail = null;
+				this.aglPass = null;
+				this.aglFlag = true;
+				
+				alert("Log in successfully");			
+			}).catch(function(error) {
+				$scope.getError(error);
+			});
+		}
+	}
+]);
 })();
