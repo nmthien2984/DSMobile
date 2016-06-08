@@ -1,5 +1,5 @@
 (function() {
-	angular.module('app.controllers', "firebase", "ngRoute").controller("mainCtrl", ["$scope", "$firebaseArray", "$window", function($scope, $firebaseArray, $window){
+	angular.module('app.controllers', ["firebase", "ngRoute"]).controller("mainCtrl", ["$scope", "$firebaseArray", "$window", function($scope, $firebaseArray, $window){
 
 	var ref = new Firebase("https://mobileds.firebaseio.com/");
 	

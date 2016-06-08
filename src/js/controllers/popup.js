@@ -58,7 +58,6 @@
 
 		this.popup = function(windowname) 
 		{
-			alert("Đăng nhập");
 			this.blanket_size(windowname);
 			this.window_pos(windowname);
 			this.toggle('blanket');
