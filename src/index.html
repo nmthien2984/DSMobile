@@ -22,179 +22,180 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
 
 </head>
-<body  ng-app="app" >	
-
-	<div ng-controller="appCtrl">
-	<div class="header">
-  		<div class="wrap">
-			<div class="header_top">
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="" /></a>
-				</div>
-				<div class="header_top_right">
-					<div class="search_box">
-					  	<span>Search</span>
-			     		<form>
-			     			<input type="text" value="">
-			     			<input type="submit" value="">
-			     		</form>
-			     		<div class="clear"></div>
-			     	</div>
-			     	<button>Login</button>
-				</div>
-		    	<div class="clear"></div>
-		    </div>     
-  		    <div class="navigation">
-				<ul class="nav">
-					<li>
-						<a href="#" ng-click="loadPhones('Apple')">Apple</a>	
-					</li>
-					<li>
-						<a href="#">Samsung</a>							
-					</li>
-					<li>
-						<a href="#">LG</a>
-					</li>
-					<li>
-						<a href="#">Sony</a>
-					</li>
-					<li>
-						<a href="#">HTC</a>
-					</li>
-					<li>
-						<a href="#">Oppo</a>
-					</li>
-					<li>
-						<a href="#">Huawei</a>
-					</li>
-					<li>
-						<a href="#">Xiaomi</a>
-					</li>
-				</ul>
-				<span class="left-ribbon"> </span> 
-  				<span class="right-ribbon"> </span>    
-  		    </div>
-  		    <div class="header_bottom">
-				<div class="slider-text">
-					<h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
-					<p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
-					<a href="#">Sitamet Tortorions</a>
-		  	    </div>
-		  	    <div class="slider-img">
-		  	    	<img src="images/slider-img.png" alt="" />
-		  	    </div>
-		  	    <div class="clear"></div>
-	        </div>
-   		</div>
-   </div>
-   <!------------End Header ------------>
-  <div class="main">
-      <div class="content">
-    	        <div class="content_top">
-    	        	<div class="wrap">
-		          	   <h3>Latest Products</h3>
-		          	</div>
-		          	<div class="line"> </div>
-		          	<div class="wrap">
-						<div class="ocarousel_slider">  
-							<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
-								<div class="ocarousel_window">
-									<a href="#" title="img1"> 
-										<img src="images/iphone-6s-plus.png" alt="" />
-										<p>iPhone 6S Plus</p>
-									</a>
-									<a href="#" title="img1"> 
-										<img src="images/iphone-6s-plus.png" alt="" />
-										<p>iPhone 6S Plus</p>
-									</a>
-									<a href="#" title="img1"> 
-										<img src="images/iphone-6s-plus.png" alt="" />
-										<p>iPhone 6S Plus</p>
-									</a>
-									<a href="#" title="img1"> 
-										<img src="images/iphone-6s-plus.png" alt="" />
-										<p>iPhone 6S Plus</p>
-									</a>
-									<a href="#" title="img1"> 
-										<img src="images/iphone-6s-plus.png" alt="" />
-										<p>iPhone 6S Plus</p>
-									</a>
-									<a href="#" title="img1"> 
-										<img src="images/iphone-6s-plus.png" alt="" />
-										<p>iPhone 6S Plus</p>
-									</a>
-								</div>
-								<span>           
-								<a href="#" data-ocarousel-link="left" style="float: left;" class="prev"> </a>
-								<a href="#" data-ocarousel-link="right" style="float: right;" class="next"> </a>
-								</span>
-							</div>
-						</div>  
-				   </div>    		
-    	       </div>
-    	  <div class="content_bottom">
-    	    <div class="wrap">
-    	    	<div class="content-bottom-left">
-    	    		<div class="categories">
-						   <ul>
-						  	   <h3>Browse All Brands</h3>
-						      		<li><a href="#">Apple</a></li>
-							      	<li><a href="#">Samsung</a></li>
-							      	<li><a href="#">LG</a></li>
-							      	<li><a href="#">Sony</a></li>
-							      	<li><a href="#">HTC</a></li>
-							      	<li><a href="#">Oppo</a></li>
-							      	<li><a href="#">Huawei</a></li>
-							      	<li><a href="#">Xiaomi</a></li>
-						  	 </ul>
-						</div>		 
-    	    	</div>
-    	    	
-				<div class="content-bottom-right">
-					<h3>Hot Phones</h3>
-					<div class="section group">
-						<div class="grid_1_of_4 images_1_of_4" ng-repeat="phone in phones">
-							<h4><a href="product.html">{{phone.name.id}}</a></h4>
-							<a href="product.html"><img src="images/iphone-6s-plus.png" alt="" /></a>
-							<div class="price-details">
-								<div class="price-number">
-									<p><span class="rupees">20.000.000VND</span></p>
-								</div>
-								<div class="add-cart">								
-									<h4><a href="product.html">More Info</a></h4>
-								</div>
-								<div class="clear"></div>
-							</div>					 
-						</div>
-
+<html ng-app="app">
+<body >	
+	
+	<div ng-controller="mainCtrl">
+		<div class="header">
+			<div class="wrap">
+				<div class="header_top">
+					<div class="logo">
+						<a href="index.html"><img src="images/logo.png" alt="" /></a>
 					</div>
+					<div class="header_top_right">
+						<div class="search_box">
+							<span>Search</span>
+							<form>
+								<input type="text" value="">
+								<input type="submit" value="">
+							</form>
+							<div class="clear"></div>
+						</div>
+						<button>Login</button>
+					</div>
+					<div class="clear"></div>
+				</div>     
+				<div class="navigation">
+					<ul class="nav">
+						<li>
+							<a href="#" ng-click="loadPhones('Apple')">Apple</a>	
+						</li>
+						<li>
+							<a href="#">Samsung</a>							
+						</li>
+						<li>
+							<a href="#">LG</a>
+						</li>
+						<li>
+							<a href="#">Sony</a>
+						</li>
+						<li>
+							<a href="#">HTC</a>
+						</li>
+						<li>
+							<a href="#">Oppo</a>
+						</li>
+						<li>
+							<a href="#">Huawei</a>
+						</li>
+						<li>
+							<a href="#">Xiaomi</a>
+						</li>
+					</ul>
+					<span class="left-ribbon"> </span> 
+					<span class="right-ribbon"> </span>    
 				</div>
-				<div class="clear"></div>
+				<div class="header_bottom">
+					<div class="slider-text">
+						<h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
+						<p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
+						<a href="#">Sitamet Tortorions</a>
+					</div>
+					<div class="slider-img">
+						<img src="images/slider-img.png" alt="" />
+					</div>
+					<div class="clear"></div>
+				</div>
 			</div>
-         </div>
-      </div>
-    </div>
-   <div class="footer">
-   	  <div class="wrap">	
-			 <div class="copy_right">
-				<p>Copy rights (c). All rights Reseverd | Template by  <a href="http://w3layouts.com" target="_blank">W3Layouts</a> </p>
-		   </div>		
-        </div>
-    </div>
+	   </div>
+	   <!------------End Header ------------>
+	  <div class="main">
+		  <div class="content">
+					<div class="content_top">
+						<div class="wrap">
+						   <h3>Latest Products</h3>
+						</div>
+						<div class="line"> </div>
+						<div class="wrap">
+							<div class="ocarousel_slider">  
+								<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
+									<div class="ocarousel_window">
+										<a href="#" title="img1"> 
+											<img src="images/iphone-6s-plus.png" alt="" />
+											<p>iPhone 6S Plus</p>
+										</a>
+										<a href="#" title="img1"> 
+											<img src="images/iphone-6s-plus.png" alt="" />
+											<p>iPhone 6S Plus</p>
+										</a>
+										<a href="#" title="img1"> 
+											<img src="images/iphone-6s-plus.png" alt="" />
+											<p>iPhone 6S Plus</p>
+										</a>
+										<a href="#" title="img1"> 
+											<img src="images/iphone-6s-plus.png" alt="" />
+											<p>iPhone 6S Plus</p>
+										</a>
+										<a href="#" title="img1"> 
+											<img src="images/iphone-6s-plus.png" alt="" />
+											<p>iPhone 6S Plus</p>
+										</a>
+										<a href="#" title="img1"> 
+											<img src="images/iphone-6s-plus.png" alt="" />
+											<p>iPhone 6S Plus</p>
+										</a>
+									</div>
+									<span>           
+									<a href="#" data-ocarousel-link="left" style="float: left;" class="prev"> </a>
+									<a href="#" data-ocarousel-link="right" style="float: right;" class="next"> </a>
+									</span>
+								</div>
+							</div>  
+					   </div>    		
+				   </div>
+			  <div class="content_bottom">
+				<div class="wrap">
+					<div class="content-bottom-left">
+						<div class="categories">
+							   <ul>
+								   <h3>Browse All Brands</h3>
+										<li><a href="#">Apple</a></li>
+										<li><a href="#">Samsung</a></li>
+										<li><a href="#">LG</a></li>
+										<li><a href="#">Sony</a></li>
+										<li><a href="#">HTC</a></li>
+										<li><a href="#">Oppo</a></li>
+										<li><a href="#">Huawei</a></li>
+										<li><a href="#">Xiaomi</a></li>
+								 </ul>
+							</div>		 
+					</div>
+					
+					<div class="content-bottom-right">
+						<h3>Hot Phones</h3>
+						<div class="section group">
+							<div class="grid_1_of_4 images_1_of_4" ng-repeat="phone in phones">
+								<h4><a href="product.html">{{phone.name.id}}</a></h4>
+								<a href="product.html"><img src="images/iphone-6s-plus.png" alt="" /></a>
+								<div class="price-details">
+									<div class="price-number">
+										<p><span class="rupees">20.000.000VND</span></p>
+									</div>
+									<div class="add-cart">								
+										<h4><a href="product.html">More Info</a></h4>
+									</div>
+									<div class="clear"></div>
+								</div>					 
+							</div>
+
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			 </div>
+		  </div>
+		</div>
+	   <div class="footer">
+		  <div class="wrap">	
+				 <div class="copy_right">
+					<p>Copy rights (c). All rights Reseverd | Template by  <a href="http://w3layouts.com" target="_blank">W3Layouts</a> </p>
+			   </div>		
+			</div>
+		</div>
 
 
-    <span font-size="50">{{test}}</span>
+		<span font-size="50">{{test}}</span>
 	</div>
-
-	<div ng-controller="popupCtrl">
+	
+	<div ng-controller="PopupCtrl as popupCtrl">
 		<div id="blanket" style="display:none"></div>
 		
 		<div id="popUpDiv" style="display:none">
 
-			<a href="#" ng-click="popup('popUpDiv')" >Click to Close CSS Pop Up</a>
+			<a href="#" ng-click="popupCtrl.popup('popUpDiv')" >Click to Close CSS Pop Up</a>
 		</div>
 		
-		<a href="#" ng-click="popup('popUpDiv')">Click to Open CSS Pop Up</a>
+		<a href="#" ng-click="popupCtrl.popup('popUpDiv')">Click to Open CSS Pop Up</a>
 	</div>
 	
     <script type="text/javascript">
@@ -203,11 +204,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			
 		});
 	</script>
-    <a href="#" id="toTop"> </a>
 	
-	<script type="text/javascript" src="js/indexApp.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/popup.js"></script>
+    <a href="#" id="toTop"> </a>
+
+	<script type="text/javascript" src="js/controllers/main.js"></script>
+	<script type="text/javascript" src="js/controllers/index.js"></script>
+	<script type="text/javascript" src="js/controllers/popup.js"></script>
+
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
 
