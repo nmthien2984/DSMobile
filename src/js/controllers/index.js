@@ -1,37 +1,48 @@
 (function() {
-	angular.module('app.controllers', "firebase", "ngRoute").controller("mainCtrl", ["$scope", "$firebaseArray", "$window", function($scope, $firebaseArray, $window){
 
-	var ref = new Firebase("https://mobileds.firebaseio.com/");
-	
-	$scope.phones;
-  $scope.currentBrand;
-	$scope.products = $firebaseArray(ref.child('products'));
-	$scope.products.$loaded()
-  		.then(function() {
-    		console.log($scope.products);
-    		$scope.loadPhones("Apple");
-        $scope.currentBrand = "Apple";
-  		})
-  		.catch(function(err) {
-    		console.error(err);
-  		});
+  angular.module('app.controllers', ["firebase"])
+  .controller("mainCtrl", ["$scope", "$firebaseArray", "$window", 
+  function($scope, $firebaseArray, $window){
+
+    var ref = new Firebase("https://mobileds.firebaseio.com/");
+    	
+    $scope.phones;
+    $scope.currentBrand;
+    $scope.products = $firebaseArray(ref.child('products'));
+    $scope.products.$loaded()
+      .then(function() {
+        console.log($scope.products);
+
+        var brand = Lockr.get("reqBrand", null);
+        if (brand != null) {
+          $scope.loadPhones(brand);
+          $scope.currentBrand = brand;
+        } else {
+          $scope.loadPhones("Apple");
+          $scope.currentBrand = "Apple";
+        }
+      })
+      .catch(function(err) {
+      console.error(err);
+      });
 
 
-  	$scope.loadPhones = function(brand) {
+    $scope.loadPhones = function(brand) {
 
       if (brand == $scope.currentBrand)
-        return;
+      return;
 
       $scope.currentBrand = brand;
-  		$scope.phones = [];
-  		
-  		for (i = 0; i < $scope.products.length; i++) {
-  			if ($scope.products[i].maker.name == brand) {
+      $scope.phones = [];
+
+      var i;
+      for (i = 0; i < $scope.products.length; i++) {
+        if ($scope.products[i].maker.name == brand) {
 
           var phone = $scope.products[i];
 
           var price = (Math.floor(Math.random() * (400 - 100)) + 100)* 50000; // random giá
-  				phone.price = price.toString();
+          phone.price = price.toString();
 
           // định dạng lại dữ liệu
           if (phone.memory.ram >= 1024)
@@ -47,27 +58,23 @@
           // thêm link ảnh
           phone.image = "images/phones/" + phone.$id + ".jpg";
 
-  				$scope.phones.push(phone);
+          $scope.phones.push(phone);
 
-  			}
-  		}
-		
-		console.log($scope.phones);  		
-  	};
+        }
+      }
+
+      console.log($scope.phones);  		
+    };
 
     $scope.goToProductPage = function(phone) {
       Lockr.set("phone", phone);
-      var url = $window.location.host + "/product.html";
-      console.log($window.location);
-      console.log($window.location.host);
-      console.log(url);
-      //$window.location.href = url;
-    }
+      $window.location.href = "/product.html";
+    };
 
     $scope.login = function() {
 
     };
 
-}]);
+  }]);
 })();
 
