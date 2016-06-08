@@ -1395,6 +1395,10 @@ body {
 	font-weight: bold;
 }
 
+.cell_wrapper {
+	position: relative;
+}
+
 .remove_button {
 	background:#e44f2b;
 	border: none;
@@ -1404,9 +1408,12 @@ body {
 	padding-bottom: 3px;
 	cursor: pointer;
 	color: #ffb29f;
-	height: 36px;
 	font-size: 17px;
 	font-weight: bold; 
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	margin-top: -20px;	
 }
 
 .remove_button:hover {

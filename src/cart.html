@@ -119,15 +119,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="cart-details">	
 							<table>
 								<tr>
-									<td></td>
 									<td><span class="table_header">Product</span></td>
 									<td><span class="table_header">Price</span></td>
 									<td><span class="table_header">Quantity</span></td>
 									<td><span class="table_header">Total</span></td>
 								</tr>
-								<tr ng-repeat = "phone in phones">
-									<td><button class="remove_button" ng-click="aaa()">X</button></td>
-									<td>
+								<tr ng-repeat = "phone in phones" ng-mouseenter="shows[phone.index] = !shows[phone.index]" ng-mouseleave="shows[phone.index] = !shows[phone.index]">
+									<td class="cell_wrapper">
+									<button class="remove_button" ng-show="shows[phone.index]" ng-click="remove(phone)">X</button>
 										<div>
 											<img src="{{phone.image}}">
 										</div>
@@ -139,7 +138,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<td><span>{{phone.price * phone.quantity}}đ<span></td>
 								</tr>
 								<tr>
-									<td></td><td></td><td></td>
+									<td></td><td></td>
 									<td>Total:</td>
 									<td>{{total}}đ</td>
 								</tr>

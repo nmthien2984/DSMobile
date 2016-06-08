@@ -14,14 +14,18 @@
       .then(function() {
         console.log($scope.cartItems);
         $scope.phones = [];
+        $scope.shows = [];
         var i;
         for (i = 0; i < $scope.cartItems.length; i++) {
           let phone = $firebaseObject(ref.child("products/"+ $scope.cartItems[i].$id));
           let j = i;
           phone.$loaded().then(function() {
             phone.quantity = $scope.cartItems[j].$value;
+            phone.index = j;
             $scope.total += phone.price * phone.quantity;
+            console.log(phone);
             $scope.phones.push(phone);
+            $scope.shows.push(false);
           });
         }
         
@@ -30,10 +34,21 @@
       console.error(err);
       });
 
-    $scope.loadPhones = function(brand) {
-      Lockr.set("phone", null);
-      Lockr.set("reqBrand", brand);
-      $window.location.href = "/";
+    $scope.remove = function(phone) {
+      var index = $scope.phones.indexOf(phone);
+      var money = phone.price * phone.quantity;
+     
+      var onComplete = function(error) {
+        if (error) {
+          console.log('Synchronization failed');
+        } else {
+          $scope.phones.splice(index, 1);
+          $scope.total -= money;
+          console.log('Synchronization succeeded');
+        }
+      };
+
+      ref.child("carts/" + $scope.user + "/" + phone.$id).remove(onComplete);
     };
 
   }]);
