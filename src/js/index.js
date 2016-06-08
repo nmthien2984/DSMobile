@@ -1,6 +1,9 @@
-app = angular.module('app', ["firebase"]);
-
-app.controller("appCtrl", ["$scope", "$firebaseObject", function($scope, $firebaseObject){
+(function () {
+    'use strict';
+ 
+    var app= angular.module('app', ["firebase"]);
+	
+	app.controller("appCtrl", ["$scope", "$firebaseObject", function($scope, $firebaseObject){
 
 	var ref = new Firebase("https://mobileds.firebaseio.com/");
 	
@@ -44,3 +47,4 @@ app.controller("appCtrl", ["$scope", "$firebaseObject", function($scope, $fireba
   	}	
 
 }]);
+}());
