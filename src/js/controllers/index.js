@@ -38,28 +38,7 @@
       var i;
       for (i = 0; i < $scope.products.length; i++) {
         if ($scope.products[i].maker.name == brand) {
-
-          var phone = $scope.products[i];
-
-          var price = (Math.floor(Math.random() * (400 - 100)) + 100)* 50000; // random giá
-          phone.price = price.toString();
-
-          // định dạng lại dữ liệu
-          if (phone.memory.ram >= 1024)
-            phone.memory.ram = (phone.memory.ram / 1024).toString() + "GB";
-          else
-            phone.memory.ram = (phone.memory.ram).toString() + "MB";
-
-          if (phone.memory.rom >= 1024)
-            phone.memory.rom = (phone.memory.rom / 1024).toString() + "GB";
-          else
-            phone.memory.rom = (phone.memory.rom).toString() + "MB";
-
-          // thêm link ảnh
-          phone.image = "images/phones/" + phone.$id + ".jpg";
-
-          $scope.phones.push(phone);
-
+          $scope.phones.push($scope.products[i]);
         }
       }
 
@@ -71,9 +50,7 @@
       $window.location.href = "/product.html";
     };
 
-    $scope.login = function() {
-
-    };
+    
 
   }]);
 })();

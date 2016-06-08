@@ -6,7 +6,9 @@
 
     var ref = new Firebase("https://mobileds.firebaseio.com/");
     	
-    $scope.phone = Lockr.get("phone");
+    $scope.phone = Lockr.get("phone", null);
+    if (phone != null)
+      Lockr.set("reqBrand", $scope.phone.maker.name);
 
     $scope.products = $firebaseArray(ref.child('products'));
     $scope.products.$loaded()
@@ -20,8 +22,8 @@
     $scope.loadPhones = function(brand) {
       Lockr.set("phone", null);
       Lockr.set("reqBrand", brand);
-      $window.location.href = "/index.html";
-    }
+      $window.location.href = "/";
+    };
 
   }]);
 })();
