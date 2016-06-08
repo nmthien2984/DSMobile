@@ -1,4 +1,4 @@
 (function() {
-	angular.module('app',['app.controllers']);
+	angular.module('app',['app.controllers', "firebase", "ngRoute"]);
 })();
 
