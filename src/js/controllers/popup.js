@@ -93,7 +93,10 @@
 	      if (authData) {
 	        console.log(authData);
 	        $scope.loggedIn = true;
-	        $scope.loggedInSpan = "Logged in as " + authData.password.email;
+	        if (authData.provider == "facebook")
+	        	$scope.loggedInSpan = "Logged in as " + authData.facebook.displayName;
+	        else
+	        	$scope.loggedInSpan = "Logged in as " + authData.password.email;
 	        console.log("loggedIn = " + $scope.loggedIn);
 	        console.log("User " + authData.uid + " is logged in with " + authData.provider);
 	      } else {

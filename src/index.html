@@ -95,7 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<img class = "close_login_dialog" ng-click = "popup('popUpDiv')" src = "images/delete.png" />
 						</div>
 
-						<span class="logged_span">{{loggedInSpan}}</span>
+						<span class="logged_span" ng-show="loggedIn">{{loggedInSpan}}</span>
 						<div class="shopping-cart" ng-show="loggedIn" ng-click="goToCart()"></div>
 						<button ng-hide="loggedIn" ng-click = "popup('popUpDiv')" >Login</button>
 						<button ng-show="loggedIn" id="btnLogout" ng-click = "SignOut()">Logout</button>	

@@ -92,7 +92,13 @@
         return;
       }
 
-      var reviewItem = {"email" : $scope.user.password.email, 
+      var name;
+      if (user.provider == "facebook")
+        name = $scope.user.facebook.displayName;
+      else
+        name = $scope.user.password.email;
+
+      var reviewItem = {"name" : name, 
         "title" : $scope.title, "content" : $scope.content};
 
       var onComplete = function(error) {
