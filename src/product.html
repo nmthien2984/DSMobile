@@ -200,9 +200,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<div class="share">
 										<p>Number of units :</p><input type="number" class="text_box" type="text" min="1" ng-model="quantity"/>				
 									</div>
-									<div class="button" ng-click="addToCart()"><span><a href="#">Add to Cart</a></span></div>					
-									<div class="clear"></div>
+										<div class="button" ng-click="addToCart()"><span><a href="#">Add to Cart</a></span></div>
+										
+										<div class="clear">										
+									</div>
 								</div>
+								<span class="mustLogin_span" ng-show="warn">You must login first to add products to cart</span>
 
 							</div>
 							<div class="clear"></div>

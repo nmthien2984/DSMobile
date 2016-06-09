@@ -69,6 +69,11 @@
     };
 
     $scope.addToCart = function() {
+      if ($scope.user == null) {
+        $scope.warn = true;
+        return;
+      }
+
       var cartItem = $firebaseObject(ref.child("carts/"+ $scope.user.uid + "/" + $scope.phone.$id));
       cartItem.$loaded().then(function() {
         if (cartItem == null) {

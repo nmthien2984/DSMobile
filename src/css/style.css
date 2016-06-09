@@ -766,6 +766,10 @@ body {
 	font-size:20px;
 	color:#444;
 }
+.mustLogin_span {
+	float: right;
+	color: #e44f2b;
+}
 .wish-list{
 	padding:15px 0;
 	border-bottom:1px solid #D6D6D6;
