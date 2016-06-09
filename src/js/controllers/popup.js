@@ -99,6 +99,9 @@
 	        	$scope.loggedInSpan = "Logged in as " + authData.password.email;
 	        console.log("loggedIn = " + $scope.loggedIn);
 	        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+	        setTimeout(function () {
+        		$scope.$apply(function(){});
+    		}, 1000);
 	      } else {
 	        $scope.loggedIn = false;
 	        $scope.loggedInSpan = "";
@@ -108,6 +111,17 @@
 	    }
 
     	ref.onAuth(authDataCallback);
+
+    	$scope.loginFacebook = function() {
+			ref.authWithOAuthPopup("facebook", function(error, authData) {
+					if (error) {
+					console.log("Login Failed!", error);
+				} else {
+					$scope.popup('popUpDiv');
+					console.log("Authenticated successfully with payload:", authData);
+				}
+			});
+		}
 		
 		$scope.SignUp = function()
 		{		
@@ -136,6 +150,7 @@
 					$scope.aglSUEmail = null;
 					$scope.aglSUPass = null;
 					$scope.aglFlag = true;
+					$scope.popup('popUpDiv');
 					//window.location.href = "index.html";
 				}).catch(function(error) {
 					$scope.getError(error);

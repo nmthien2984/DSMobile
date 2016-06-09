@@ -457,7 +457,7 @@ body {
 	float: left;
 	margin: 1% 0 1% 1.6%;
 }
-.grid_1_of_4:nth-child(4n + 1) {
+.grid_1_of_4:nth-child(4n+2) {
 	margin-left: 0;
 }
 .images_1_of_4 {
@@ -766,7 +766,7 @@ body {
 	font-size:20px;
 	color:#444;
 }
-.mustLogin_span {
+.inform_span {
 	float: right;
 	color: #e44f2b;
 }

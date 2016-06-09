@@ -121,7 +121,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 						<span class="logged_span">{{loggedInSpan}}</span>
 						<button ng-hide="loggedIn" ng-click = "popup('popUpDiv')" >Login</button>
-						<button ng-show="loggedIn" id="btnLogout" ng-click = "SignOut()">Logout</button>	
+						<button ng-show="loggedIn" id="btnLogout" ng-click = "signOutFromCart()">Logout</button>	
 			     	</span>	
 			     	
 				</div>
@@ -205,28 +205,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="rightsidebar span_3_of_1 sidebar">
 						<h3>Popular Products</h3>
 						<ul class="popular-products">
-							<li>
-								<h4><a href="preview.html">iPhone 6s Plus</a></h4>
-								<a href="preview.html"><img src="images/iphone-6s-plus.png" alt="" /></a>
+							<li ng-repeat= "popular in popularPhones">
+								<h4><a href="#" ng-click="loadProduct(popular)">{{popular.name.id}}</a></h4>
+								<a href="#" ng-click="loadProduct(popular)"><img src="{{popular.image}}" alt="" /></a>
 								<div class="price-details">
 									<div class="price-number">
-										<p><span class="rupees">20.000.000VND </span></p>
+										<p><span class="rupees">{{popular.price}}đ</span></p>
 									</div>
 									<div class="add-cart">								
-										<h4><a href="preview.html">More Info</a></h4>
-									</div>
-									<div class="clear"></div>
-								</div>
-							</li>
-							<li>
-								<h4><a href="preview.html">iPhone 6s Plus</a></h4>
-								<a href="preview.html"><img src="images/iphone-6s-plus.png" alt="" /></a>
-								<div class="price-details">
-									<div class="price-number">
-										<p><span class="rupees">200000</span></p>
-									</div>
-									<div class="add-cart">								
-										<h4><a href="#" ng-click="loadPhone()">More Info</a></h4>
+										<h4><span ng-click="loadProduct(popular)">More Info</span></h4>
 									</div>
 									<div class="clear"></div>
 								</div>

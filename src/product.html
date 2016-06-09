@@ -124,7 +124,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<span class="logged_span" ng-show="loggedIn">{{loggedInSpan}}</span>
 						<div class="shopping-cart" ng-show="loggedIn" ng-click="goToCart()"></div>
 						<button ng-hide="loggedIn" ng-click = "popup('popUpDiv')" >Login</button>
-						<button ng-show="loggedIn" id="btnLogout" ng-click = "signOutFromCart()">Logout</button>	
+						<button ng-show="loggedIn" id="btnLogout" ng-click = "SignOut()">Logout</button>	
 			     	</span>	
 				</div>
 		    	<div class="clear"></div>
@@ -205,7 +205,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<div class="clear">										
 									</div>
 								</div>
-								<span class="mustLogin_span" ng-show="warn">You must login first to add products to cart</span>
+								<span class="inform_span" ng-show="warn">You must login first to add products to cart</span>
 
 							</div>
 							<div class="clear"></div>

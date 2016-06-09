@@ -121,7 +121,7 @@
       }
 
       var name;
-      if (user.provider == "facebook")
+      if ($scope.user.provider == "facebook")
         name = $scope.user.facebook.displayName;
       else
         name = $scope.user.password.email;

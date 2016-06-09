@@ -24,6 +24,29 @@
     }
 
     ref.onAuth(authDataCallback);
+
+    $scope.populars = $firebaseArray(ref.child('popular'));
+    $scope.populars.$loaded()
+      .then(function() {
+        $scope.popularPhones = [];
+        var i;
+        var count = 0;
+        for (i = 0; i < $scope.populars.length; i++) {
+          let temp = $firebaseObject(ref.child("products/" + $scope.populars[i].$value));
+          
+          temp.$loaded()
+            .then(function() {
+                $scope.popularPhones.push(temp);
+            })
+            .catch(function(err) {
+            console.error(err);
+            });
+          
+        }
+      })
+      .catch(function(err) {
+      console.error(err);
+      });
     
     $scope.cartItems.$loaded()
       .then(function() {

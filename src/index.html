@@ -68,6 +68,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<p> Haven't account yet? <a href = "#" ng-click="flag1 = !flag1"> Sign up </a> </p>
 									
 									<center> <button ng-click = "SignIn()"> Login </button> </center>
+									<center>or</center>
+									<center><button class="facebook_button" ng-click="loginFacebook()">
+										<img src="images/sign-in-facebook.png" alt="Sign in with Facebook" />
+									</button></center>
 								</div>
 							</div>
 							
@@ -196,6 +200,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="content-bottom-right">
 						<h3>{{currentBrand}}</h3>
 						<div class="section group">
+							<span ng-show = "phones.length == 0">No product found</span>
 							<div class="grid_1_of_4 images_1_of_4" ng-repeat="phone in phones">
 								<h4><a href="product.html">{{phone.name.id}} {{phone.memory.rom}}</a></h4>
 								<a href="#" ng-click="goToProductPage(phone)"><img src="{{phone.image}}" alt="" /></a>

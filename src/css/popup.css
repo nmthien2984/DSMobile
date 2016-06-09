@@ -15,7 +15,7 @@
 	position:absolute;
 	background: #8fa7ae;
 	width:400px;
-	height:400px;
+	height:430px;
 	border-radius: 25px;
 	z-index: 9002;
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -78,4 +78,9 @@
 .login_error
 {
 	color : red;
+}
+
+.facebook_button {
+	background: transparent !important;
+	margin-top: 0px !important;
 }
