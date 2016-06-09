@@ -60,14 +60,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								
 								<div>
 									<p class = "login-tilte"> Email </p>
-									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "popupCtrl.aglEmail"/>
+									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "aglEmail"/>
 									<p class = "login-title"> Password </p>
-									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "popupCtrl.aglPass"/>
+									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "aglPass"/>
 									<p class = "login_error"> {{aglError}} </p>
 									<p> Forgot password? Click <a href = "#"> here </a> </p>
 									<p> Haven't account yet? <a href = "#" ng-click="flag1 = !flag1"> Sign up </a> </p>
 									
-									<center> <button ng-click = "popupCtrl.SignIn()"> Login </button> </center>
+									<center> <button ng-click = "SignIn()"> Login </button> </center>
 								</div>
 							</div>
 							
@@ -78,24 +78,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								
 								<div>
 									<p class = "login-tilte"> Email </p>
-									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "popupCtrl.aglSUEmail"/>
+									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "aglSUEmail"/>
 									<p class = "login-title"> Password </p>
-									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "popupCtrl.aglSUPass"/>
+									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "aglSUPass"/>
 									
-									<input type = "checkbox" ng-model="popupCtrl.aglAgree"/> I agree to the Terms of Service and Privacy Policy
+									<input type = "checkbox" ng-model="aglAgree"/> I agree to the Terms of Service and Privacy Policy
 									
 									<p class = "login_error"> {{aglError}} </p>
-									<center> <button ng-click = "popupCtrl.SignUp()"> Sign up </button> </center>
+									<center> <button ng-click = "SignUp()"> Sign up </button> </center>
 								</div>
 							</div>
 
 							<div ng-show = "flag2">
 								We have sent new password to your email!
 							</div>
-							<img class = "close_login_dialog" ng-click = "popupCtrl.popup('popUpDiv')" src = "images/delete.png" />
+							<img class = "close_login_dialog" ng-click = "popup('popUpDiv')" src = "images/delete.png" />
 						</div>
 
-						<button ng-click = "popupCtrl.popup('popUpDiv')">Login</button>	
+						<span class="logged_span">{{loggedInSpan}}</span>
+						<button ng-hide="loggedIn" ng-click = "popup('popUpDiv')" >Login</button>
+						<button ng-show="loggedIn" id="btnLogout" ng-click = "SignOut()">Logout</button>	
 			     	</span>	
 				</div>
 		    	<div class="clear"></div>

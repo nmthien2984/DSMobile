@@ -5,10 +5,12 @@
 	function ($scope, $firebaseAuth, $window)
 	{
 		var ref = new Firebase("https://mobileds.firebaseio.com");
-		this.auth = $firebaseAuth(ref);
-		//alert(this.auth);	
+		$scope.auth = $firebaseAuth(ref);
+		console.log($scope.auth);	
+		$scope.loggedIn = false;
+		$scope.loggedInSpan = "";
 		
-		this.toggle = function(div_id) {
+		$scope.toggle = function(div_id) {
 			var el = document.getElementById(div_id);
 			if ( el.style.display == 'none' ) 
 				el.style.display = 'block';
@@ -16,7 +18,7 @@
 				el.style.display = 'none';
 		}
 		
-		this.blanket_size = function(popUpDivVar) {
+		$scope.blanket_size = function(popUpDivVar) {
 			if (typeof window.innerWidth != 'undefined')
 				viewportheight = window.innerHeight;
 			else
@@ -39,7 +41,7 @@
 			popUpDiv.style.top = popUpDiv_height + 'px';
 		}
 
-		this.window_pos = function(popUpDivVar) 
+		$scope.window_pos = function(popUpDivVar) 
 		{
 			if (typeof window.innerWidth != 'undefined')
 				viewportwidth = window.innerHeight;
@@ -61,12 +63,12 @@
 			popUpDiv.style.left = window_width + 'px';
 		}
 
-		this.popup = function(windowname) 
+		$scope.popup = function(windowname) 
 		{
-			this.blanket_size(windowname);
-			this.window_pos(windowname);
-			this.toggle('blanket');
-			this.toggle(windowname);		
+			$scope.blanket_size(windowname);
+			$scope.window_pos(windowname);
+			$scope.toggle('blanket');
+			$scope.toggle(windowname);		
 		}	
 
 		$scope.getError = function(error)
@@ -83,37 +85,54 @@
 				$scope.aglError = "Email's used!";
 		}
 		//$scope.getError("");
-		//this.aglError = null;
-		this.aglEmail = null;
-		this.aglPass = null;
+		//$scope.aglError = null;
+		$scope.aglEmail = null;
+		$scope.aglPass = null;
+
+		function authDataCallback(authData) {
+	      if (authData) {
+	        console.log(authData);
+	        $scope.loggedIn = true;
+	        $scope.loggedInSpan = "Logged in as " + authData.password.email;
+	        console.log("loggedIn = " + $scope.loggedIn);
+	        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+	      } else {
+	        $scope.loggedIn = false;
+	        $scope.loggedInSpan = "";
+	        console.log("loggedIn = " + $scope.loggedIn);
+	        console.log("User is logged out");
+	      }
+	    }
+
+    	ref.onAuth(authDataCallback);
 		
-		this.SignUp = function()
+		$scope.SignUp = function()
 		{		
 			$scope.aglError = null;
 
-			if (this.aglSUEmail == null || this.aglSUEmail == "")
+			if ($scope.aglSUEmail == null || $scope.aglSUEmail == "")
 				$scope.aglError = "Empty Username!";
-			else if (this.aglSUPass == null || this.aglSUPass == "")
+			else if ($scope.aglSUPass == null || $scope.aglSUPass == "")
 				$scope.aglError = "Empty Password!";
-			else if (this.aglAgree != true)
+			else if ($scope.aglAgree != true)
 				$scope.aglError = "Must agree!";
 			
 			if ($scope.aglError != null)
 				return;
 						
-			this.auth.$createUser({
-				email    : this.aglSUEmail,
-				password : this.aglSUPass
+			$scope.auth.$createUser({
+				email    : $scope.aglSUEmail,
+				password : $scope.aglSUPass
 			}).then(function(userData) {
 				alert("Success");
 
-				this.auth.$authWithPassword({
-				email    : this.aglSUEmail,
-				password : this.aglSUPass
+				$scope.auth.$authWithPassword({
+				email    : $scope.aglSUEmail,
+				password : $scope.aglSUPass
 				}).then(function(authData) {
-					this.aglSUEmail = null;
-					this.aglSUPass = null;
-					this.aglFlag = true;
+					$scope.aglSUEmail = null;
+					$scope.aglSUPass = null;
+					$scope.aglFlag = true;
 					//window.location.href = "index.html";
 				}).catch(function(error) {
 					$scope.getError(error);
@@ -124,29 +143,34 @@
 			});
 		}
 	  
-		this.SignIn = function()
+		$scope.SignIn = function()
 		{
 			$scope.aglError = null;
-			if (this.aglEmail == null || this.aglEmail == "")
+			if ($scope.aglEmail == null || $scope.aglEmail == "")
 				$scope.aglError = "Empty Username!"
-			else if (this.aglPass == null || this.aglPass == "")
+			else if ($scope.aglPass == null || $scope.aglPass == "")
 				$scope.aglError = "Empty Password!"
 			
 			if ($scope.aglError != null)
 				return;
 			
-			this.auth.$authWithPassword({
-				email    : this.aglEmail,
-				password : this.aglPass
+			$scope.auth.$authWithPassword({
+				email    : $scope.aglEmail,
+				password : $scope.aglPass
 			}).then(function(authData) {
-				this.aglEmail = null;
-				this.aglPass = null;
-				this.aglFlag = true;
-				
+				$scope.aglEmail = null;
+				$scope.aglPass = null;
+				$scope.aglFlag = true;				
+				$scope.popup('popUpDiv');
 				alert("Log in successfully");			
 			}).catch(function(error) {
 				$scope.getError(error);
 			});
+		}
+
+		$scope.SignOut = function()
+		{
+			$scope.auth.$unauth();
 		}
 	}
 ]);

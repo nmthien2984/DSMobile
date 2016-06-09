@@ -110,7 +110,10 @@ body {
 .shopping-cart:hover {
 	background: url(../images/white-cart.png) no-repeat;
 }
-
+.logged_span {
+	color: white;
+	margin-right: 10px;
+}
 .header_top_right button {
 	background:#e44f2b;
 	border: none;
