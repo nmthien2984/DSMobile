@@ -53,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 						<div id="popUpDiv" style="display:none">
 							
-							<div ng-show = "!flag1" class = "login_dialog"> 
+							<div ng-show = "!flag0" class = "login_dialog"> 
 								<div class = "login_header"> 
 									LOGIN
 								</div>		
@@ -64,8 +64,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<p class = "login-title"> Password </p>
 									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "aglPass"/>
 									<p class = "login_error"> {{aglError}} </p>
-									<p> Forgot password? Click <a href = "#"> here </a> </p>
-									<p> Haven't account yet? <a href = "#" ng-click="flag1 = !flag1"> Sign up </a> </p>
+	
+									<p> Forgot password? Click <a href = "#" ng-click="changeToForgotPassword()"> here </a> </p>
+									<p> Haven't account yet? <a href = "#" ng-click="changeToSignUpForm()"> Sign up </a> </p>
 									
 									<center> <button ng-click = "SignIn()"> Login </button> </center>
 									<center>or</center>
@@ -93,8 +94,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 							</div>
 
-							<div ng-show = "flag2">
-								We have sent new password to your email!
+							<div ng-show = "flag2" class = "login_dialog">
+								<div class = "login_header"> 
+									FORGOT PASSWORD?
+								</div>	
+								<div>
+									<p class = "login-tilte"> {{aglFGError}} </p>
+									<p class = "login-tilte">  {{aglFGMess}}</p>
+								</div>
 							</div>
 							<img class = "close_login_dialog" ng-click = "popup('popUpDiv')" src = "images/delete.png" />
 						</div>

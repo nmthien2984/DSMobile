@@ -38,7 +38,7 @@
 			blanket.style.height = blanket_height + 'px';
 			var popUpDiv = document.getElementById(popUpDivVar);
 			popUpDiv_height=blanket_height/2-200;//200 is half popup's height
-			popUpDiv.style.top = popUpDiv_height + 'px';
+			popUpDiv.style.top = window.scrollTop + 'px';
 		}
 
 		$scope.window_pos = function(popUpDivVar) 
@@ -68,7 +68,10 @@
 			$scope.blanket_size(windowname);
 			$scope.window_pos(windowname);
 			$scope.toggle('blanket');
-			$scope.toggle(windowname);		
+			$scope.toggle(windowname);	
+			$scope.flag0 = false;
+			$scope.flag1 = false;
+			$scope.flag2 = false;			
 		}	
 
 		$scope.getError = function(error)
@@ -122,6 +125,17 @@
 				}
 			});
 		}
+
+		$scope.SignOut = function()
+		{
+			$scope.auth.$unauth();
+		}
+
+		$scope.signOutFromCart = function()
+		{
+			$scope.auth.$unauth();
+			$window.location.href ="/";
+		}
 		
 		$scope.SignUp = function()
 		{		
@@ -141,17 +155,26 @@
 				email    : $scope.aglSUEmail,
 				password : $scope.aglSUPass
 			}).then(function(userData) {
-				alert("Success");
+				alert("Success"  + userData.uid);
 
 				$scope.auth.$authWithPassword({
 				email    : $scope.aglSUEmail,
 				password : $scope.aglSUPass
 				}).then(function(authData) {
+					
+					$scope.aglFlag = true;
+					//window.location.href = "index.html";
+					
+					var usersRef = ref.child("users");
+					var a = usersRef.child(userData.uid);
+					a.set({
+						"email" : $scope.aglSUEmail,
+						"password" : $scope.aglSUPass						
+					});
+					
 					$scope.aglSUEmail = null;
 					$scope.aglSUPass = null;
-					$scope.aglFlag = true;
-					$scope.popup('popUpDiv');
-					//window.location.href = "index.html";
+					
 				}).catch(function(error) {
 					$scope.getError(error);
 				});
@@ -160,7 +183,7 @@
 				$scope.getError(error);
 			});
 		}
-	  
+
 		$scope.SignIn = function()
 		{
 			$scope.aglError = null;
@@ -180,7 +203,9 @@
 				$scope.aglPass = null;
 				$scope.aglFlag = true;				
 				$scope.popup('popUpDiv');
-				alert("Log in successfully");			
+				alert("Log in successfully");	
+
+				
 			}).catch(function(error) {
 				$scope.getError(error);
 			});
@@ -190,11 +215,57 @@
 		{
 			$scope.auth.$unauth();
 		}
-
-		$scope.signOutFromCart = function()
+		
+		$scope.changeToSignUpForm = function()
 		{
-			$scope.auth.$unauth();
-			$window.location.href ="/";
+			$scope.flag0 = true;
+			$scope.flag1 = true; 
+		}
+		
+		$scope.changeToForgotPassword = function()
+		{	
+			$scope.aglFGError = null;
+			$scope.aglFGMess = null;
+			$scope.flag0 = true;
+			$scope.ForgotPassWord();
+		}
+		
+		$scope.ForgotPassWord = function()
+		{
+			$scope.aglFGError = null;
+			$scope.aglFGMess = null;
+			if ($scope.aglEmail == null || $scope.aglEmail == "")
+				$scope.aglFGError = "The specified user account does not exist.";
+			
+			if ($scope.aglFGError != null)
+				return;
+			
+			ref.resetPassword({
+			  email: $scope.aglEmail
+			}, function(error) {
+				$scope.$apply(function () 
+				{
+					if (error) {
+						switch (error.code) {
+						  case "INVALID_USER":				  
+							console.log("The specified user account does not exist.");
+							$scope.aglFGError = "The specified user account does not exist.";
+							break;
+						  default:
+						  
+							console.log("Error resetting password:", error);
+							$scope.aglFGError = "Error resetting password:" + error;
+						}
+					} 
+					else {
+						console.log("Password reset email sent successfully!");
+						$scope.aglFGMess = "Password reset email sent successfully! The temporary password lasts for 24 hours! Please check mail & change your password!";			
+					}
+					
+					$scope.flag2 = true;
+				})
+			});
+			
 		}
 	}
 ]);
