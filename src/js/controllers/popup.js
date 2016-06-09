@@ -174,6 +174,7 @@
 					
 					$scope.aglSUEmail = null;
 					$scope.aglSUPass = null;
+					$scope.popup('popUpDiv');
 					
 				}).catch(function(error) {
 					$scope.getError(error);

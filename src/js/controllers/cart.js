@@ -109,5 +109,10 @@
       $window.location.href = "/";
     }
 
+    $scope.loadProduct = function(popular) {
+      Lockr.set("phone", popular);
+      $window.location.href = "/product.html";
+    }
+
   }]);
 })();

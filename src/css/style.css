@@ -768,7 +768,7 @@ body {
 }
 .inform_span {
 	float: right;
-	color: #e44f2b;
+	color: #e44f2b !important;
 }
 .wish-list{
 	padding:15px 0;
