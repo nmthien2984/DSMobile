@@ -5,7 +5,6 @@
 
     var ref = new Firebase("https://mobileds.firebaseio.com/");
     
-    $scope.user = null;
     $scope.search="";	
     $scope.phones;
     $scope.currentBrand;
@@ -31,7 +30,6 @@
       .catch(function(err) {
       console.error(err);
       });
-
 
     $scope.loadPhones = function(brand) {
 

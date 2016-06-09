@@ -6,7 +6,7 @@
 
     var ref = new Firebase("https://mobileds.firebaseio.com/");
 
-    $scope.user="1312551"; // fix later
+    $scope.user=null;
     $scope.search = "";
     $scope.quantity = 1;	
     $scope.phone = Lockr.get("phone", null);
@@ -25,6 +25,20 @@
       });
 
 
+    function authDataCallback(authData) {
+      if (authData) {
+        console.log(authData);
+        $scope.user = authData;
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      } else {
+        $scope.user = null;
+        console.log("User is logged out");
+      }
+    }
+
+    ref.onAuth(authDataCallback);
+
+
     $scope.loadPhones = function(brand) {
       Lockr.set("phone", null);
       Lockr.set("reqBrand", brand);
@@ -32,12 +46,12 @@
     };
 
     $scope.addToCart = function() {
-      var cartItem = $firebaseObject(ref.child("carts/"+ $scope.user + "/" + $scope.phone.$id));
+      var cartItem = $firebaseObject(ref.child("carts/"+ $scope.user.uid + "/" + $scope.phone.$id));
       cartItem.$loaded().then(function() {
         if (cartItem == null) {
-          ref.child("carts/"+ $scope.user + "/" + $scope.phone.$id).set($scope.quantity);
+          ref.child("carts/"+ $scope.user.uid + "/" + $scope.phone.$id).set($scope.quantity);
         } else {
-          ref.child("carts/"+ $scope.user + "/" + $scope.phone.$id).set($scope.quantity + cartItem.$value);
+          ref.child("carts/"+ $scope.user.uid + "/" + $scope.phone.$id).set($scope.quantity + cartItem.$value);
         }
         $scope.goToCart();                
       });          
@@ -59,9 +73,15 @@
     $scope.error = "";
     $scope.content = "";
     $scope.submitReview = function() {
+
+      if ($scope.user == null) {
+        $scope.error = "You must login to submit review"
+        return;
+      }
+
       var i;
       for (i = 0; i < $scope.reviews.length; i++) {
-        if ($scope.user == $scope.reviews[i].$id) {
+        if ($scope.user.uid == $scope.reviews[i].$id) {
           $scope.error = "You already reviewed this product";
           return;
         }
@@ -72,13 +92,14 @@
         return;
       }
 
-      var reviewItem = {"title" : $scope.title, "content" : $scope.content};
+      var reviewItem = {"email" : $scope.user.password.email, 
+        "title" : $scope.title, "content" : $scope.content};
 
       var onComplete = function(error) {
         if (error) {
           console.log('Synchronization failed');
         } else {
-          reviewItem.$id = $scope.user;
+          reviewItem.$id = $scope.user.uid;
           $scope.reviews.push(reviewItem);
           $scope.title = "";
           $scope.content = "";
@@ -86,7 +107,7 @@
         }
       };
       
-      ref.child("reviews/"+ $scope.phone.$id + "/" + $scope.user).set(reviewItem, onComplete);
+      ref.child("reviews/"+ $scope.phone.$id + "/" + $scope.user.uid).set(reviewItem, onComplete);
     }
 
   }]);

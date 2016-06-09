@@ -41,7 +41,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			     		<form>
 			     			<input type="text" ng-model="search" ng-required>
 			     			<input type="submit" ng-click="searchPhones()">
-			     			<div class="shopping-cart" ng-click="goToCart()"></div>
+			     			
 			     		</form>
 			     		<div class="clear"></div>
 			     	</div>
@@ -96,6 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 
 						<span class="logged_span">{{loggedInSpan}}</span>
+						<div class="shopping-cart" ng-show="loggedIn" ng-click="goToCart()"></div>
 						<button ng-hide="loggedIn" ng-click = "popup('popUpDiv')" >Login</button>
 						<button ng-show="loggedIn" id="btnLogout" ng-click = "SignOut()">Logout</button>	
 			     	</span>	

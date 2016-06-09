@@ -7,10 +7,24 @@
     var ref = new Firebase("https://mobileds.firebaseio.com/");
     
     $scope.search = "";
-    $scope.user = "1312551"; //fix later
+    $scope.user = null;
     $scope.total = 0;
     
-    $scope.cartItems = $firebaseArray(ref.child("carts/" + $scope.user));
+    function authDataCallback(authData) {
+      if (authData) {
+        console.log(authData);
+        $scope.user = authData;
+        $scope.cartItems = $firebaseArray(ref.child("carts/" + $scope.user.uid));
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      } else {
+        $scope.user = null;
+        $scope.goToIndex();
+        console.log("User is logged out");
+      }
+    }
+
+    ref.onAuth(authDataCallback);
+    
     $scope.cartItems.$loaded()
       .then(function() {
         console.log($scope.cartItems);
@@ -35,6 +49,8 @@
       console.error(err);
       });
 
+
+
     $scope.remove = function(phone) {
       var index = $scope.phones.indexOf(phone);
       var money = phone.price * phone.quantity;
@@ -49,13 +65,13 @@
         }
       };
 
-      ref.child("carts/" + $scope.user + "/" + phone.$id).remove(onComplete);
+      ref.child("carts/" + $scope.user.uid + "/" + phone.$id).remove(onComplete);
     };
 
 
     $scope.loadPhones = function(brand) {
       Lockr.set("reqBrand", brand);
-      $window.location.href = "/";
+      $scope.goToIndex();
     };
 
     $scope.searchPhones = function() {
@@ -63,6 +79,10 @@
         return;
       Lockr.set("search", $scope.search);
       Lockr.set("reqBrand", "Search result");
+      $scope.goToIndex();
+    }
+
+    $scope.goToIndex = function() {
       $window.location.href = "/";
     }
 

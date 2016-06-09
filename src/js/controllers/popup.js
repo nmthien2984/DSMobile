@@ -172,6 +172,12 @@
 		{
 			$scope.auth.$unauth();
 		}
+
+		$scope.signOutFromCart = function()
+		{
+			$scope.auth.$unauth();
+			$window.location.href ="/";
+		}
 	}
 ]);
 })();

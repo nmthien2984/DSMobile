@@ -12,6 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="css/popup.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> 
 	<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
@@ -58,7 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="wrap">
 				<div class="header_top">
 					<div class="logo">
-						<a href="/"><img src="images/logo.png" alt="" /></a>
+						<a href="index.html"><img src="images/logo.png" alt="" /></a>
 					</div>
 					<div class="header_top_right">
 					<div class="search_box">
@@ -66,14 +67,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			     		<form>
 			     			<input type="text" ng-model="search" ng-required>
 			     			<input type="submit" ng-click="searchPhones()">
-			     			<div class="shopping-cart" ng-click="goToCart()"></div>
+			     			
 			     		</form>
 			     		<div class="clear"></div>
 			     	</div>
 
 			     	
 
-			     	<span ng-controller="PopupCtrl as popupCtrl">
+					<span ng-controller="PopupCtrl as popupCtrl">
 						<div id="blanket" style="display:none"></div>
 
 						<div id="popUpDiv" style="display:none">
@@ -121,8 +122,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 
 						<span class="logged_span">{{loggedInSpan}}</span>
+						<div class="shopping-cart" ng-show="loggedIn" ng-click="goToCart()"></div>
 						<button ng-hide="loggedIn" ng-click = "popup('popUpDiv')" >Login</button>
-						<button ng-show="loggedIn" id="btnLogout" ng-click = "SignOut()">Logout</button>	
+						<button ng-show="loggedIn" id="btnLogout" ng-click = "signOutFromCart()">Logout</button>	
 			     	</span>	
 				</div>
 		    	<div class="clear"></div>
@@ -252,7 +254,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</div>
 									<div class="review">
 										<div class = "review_item" ng-repeat="review in reviews">
-											<h4><span class ="review_title">{{review.title}}</span> - <span class="review_user">{{review.$id}}</span></h4>
+											<h4><span class ="review_title">{{review.title}}</span> - <span class="review_user">{{review.email}}</span></h4>
 											<p class="review_content">{{review.content}}</p>
 										</div>
 										<div class="your-review">
