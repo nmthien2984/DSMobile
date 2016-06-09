@@ -7,12 +7,12 @@
     
     $scope.search="";	
     $scope.phones;
+    $scope.popularPhones;
     $scope.currentBrand;
     $scope.products = $firebaseArray(ref.child('products'));
     $scope.products.$loaded()
       .then(function() {
-        console.log($scope.products);
-
+        console.log($scope.products);        
         var brand = Lockr.get("reqBrand", null);
         if (brand != null && brand == "Search result") {
             $scope.search = Lockr.get("search", "");
@@ -25,11 +25,39 @@
         } else {
           $scope.loadPhones(brand);
           $scope.currentBrand = brand;
-        } 
+        }
+
+
+        $scope.populars = $firebaseArray(ref.child('popular'));
+        $scope.populars.$loaded()
+          .then(function() {
+            $scope.popularPhones = [];
+            var i;
+            var count = 0;
+            for (i = 0; i < $scope.products.length; i++) {
+              for (j = 0; j < $scope.populars.length; j++) {
+                if ($scope.products[i].$id == $scope.populars[j].$value) {
+                  $scope.popularPhones.push($scope.products[i]);
+                  count++;
+                }
+                if (count ==  $scope.populars.length) {
+                  console.log($scope.popularPhones)
+                  return;
+                }
+              }
+            }
+          })
+          .catch(function(err) {
+          console.error(err);
+          });
+
       })
       .catch(function(err) {
       console.error(err);
       });
+    
+
+    
 
     $scope.loadPhones = function(brand) {
 
