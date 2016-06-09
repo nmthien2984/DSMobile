@@ -1,4 +1,4 @@
 (function() {
-	angular.module('app.controllers');
+	angular.module('app.controllers', ["firebase"]);
 })();
 

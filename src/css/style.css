@@ -97,6 +97,20 @@ body {
 	outline:none;
 	padding:0;
 }
+.shopping-cart {
+	position: absolute;
+	width: 36px;
+	height: 36px;
+	top: 2px;
+	right: -70px;
+	cursor: pointer;
+	background: url(../images/orange-cart.png) no-repeat;
+}
+
+.shopping-cart:hover {
+	background: url(../images/white-cart.png) no-repeat;
+}
+
 .header_top_right button {
 	background:#e44f2b;
 	border: none;

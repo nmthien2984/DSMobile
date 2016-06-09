@@ -66,10 +66,62 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			     		<form>
 			     			<input type="text" ng-model="search" ng-required>
 			     			<input type="submit" ng-click="searchPhones()">
+			     			<div class="shopping-cart" ng-click="goToCart()"></div>
 			     		</form>
 			     		<div class="clear"></div>
 			     	</div>
-			     	<button ng-click = "login()">Login</button>
+
+			     	
+
+			     	<span ng-controller="PopupCtrl as popupCtrl">
+						<div id="blanket" style="display:none"></div>
+
+						<div id="popUpDiv" style="display:none">
+							
+							<div ng-show = "!flag1" class = "login_dialog"> 
+								<div class = "login_header"> 
+									LOGIN
+								</div>		
+								
+								<div>
+									<p class = "login-tilte"> Email </p>
+									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "popupCtrl.aglEmail"/>
+									<p class = "login-title"> Password </p>
+									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "popupCtrl.aglPass"/>
+									<p class = "login_error"> {{aglError}} </p>
+									<p> Forgot password? Click <a href = "#"> here </a> </p>
+									<p> Haven't account yet? <a href = "#" ng-click="flag1 = !flag1"> Sign up </a> </p>
+									
+									<center> <button ng-click = "popupCtrl.SignIn()"> Login </button> </center>
+								</div>
+							</div>
+							
+							<div ng-show = "flag1" class = "login_dialog">							
+								<div class = "login_header"> 
+									SIGN UP
+								</div>	
+								
+								<div>
+									<p class = "login-tilte"> Email </p>
+									<input class = "login-input" type = "email" placeholder = "Input email" ng-model = "popupCtrl.aglSUEmail"/>
+									<p class = "login-title"> Password </p>
+									<input class = "login-input" type = "password" placeholder = "Input password" ng-model = "popupCtrl.aglSUPass"/>
+									
+									<input type = "checkbox" ng-model="popupCtrl.aglAgree"/> I agree to the Terms of Service and Privacy Policy
+									
+									<p class = "login_error"> {{aglError}} </p>
+									<center> <button ng-click = "popupCtrl.SignUp()"> Sign up </button> </center>
+								</div>
+							</div>
+
+							<div ng-show = "flag2">
+								We have sent new password to your email!
+							</div>
+							<img class = "close_login_dialog" ng-click = "popupCtrl.popup('popUpDiv')" src = "images/delete.png" />
+						</div>
+
+						<button ng-click = "popupCtrl.popup('popUpDiv')">Login</button>	
+			     	</span>	
 				</div>
 		    	<div class="clear"></div>
 		    </div>     
@@ -276,6 +328,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <a href="#" id="toTop"> </a>
     <script type="text/javascript" src="js/controllers/main.js"></script>
 	<script type="text/javascript" src="js/controllers/product.js"></script>
+	<script type="text/javascript" src="js/controllers/popup.js"></script>
 
 	<script type="text/javascript" src="js/app.js"></script>
 </body>

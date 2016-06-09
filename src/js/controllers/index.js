@@ -55,6 +55,10 @@
       $window.location.href = "/product.html";
     };
 
+    $scope.goToCart = function(){
+      $window.location.href = "/cart.html";
+    }
+
     $scope.searchPhones = function() {
       if ($scope.search == "")
         return;
